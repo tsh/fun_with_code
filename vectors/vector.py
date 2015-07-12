@@ -26,4 +26,8 @@ if __name__ == '__main__':
     oval = canvas.create_circle(location.x, location.y, 7, fill='black')
 
     canvas.pack()
+    while True:
+        canvas.move(oval, velocity.x, velocity.y)
+        canvas.after(20)
+        canvas.update()
     window.mainloop()
