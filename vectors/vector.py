@@ -46,15 +46,16 @@ class Ball(object):
     def update(self):
         self.position.add(self.velocity)
 
-    def update(self):
-        self.position.add(self.velocity)
+    def update(self, canvas):
+        if self.position.x <= int(canvas['height']) and self.position.y < int(canvas['width']):
+            self.position.add(self.velocity)
 
     def render(self, canvas):
         canvas.create_circle(location.x, location.y, 7, fill='black')
 
 
 class App(object):
-    UPDATE_TIME = 300
+    UPDATE_TIME = 10
 
     def __init__(self):
         self.objects = []
@@ -63,13 +64,12 @@ class App(object):
         self.canvas = tkinter.Canvas(self.window, bg='white', height=200, width=200)
 
     def add_object(self, obj):
-        print (obj)
         self.objects.append(obj)
 
     def render(self):
         self.canvas.delete("all")
         for o in self.objects:
-            o.update()
+            o.update(self.canvas)
         for o in self.objects:
             o.render(self.canvas)
         self.window.after(self.UPDATE_TIME, self.render)
