@@ -47,8 +47,14 @@ class Ball(object):
         self.position.add(self.velocity)
 
     def update(self, canvas):
-        if self.position.x <= int(canvas['height']) and self.position.y < int(canvas['width']):
-            self.position.add(self.velocity)
+        width = int(canvas['width'])
+        height = int(canvas['height'])
+        if self.position.x > width:
+            self.position.x = 0
+        if self.position.y > height:
+            self.position.y = 0
+
+        self.position.add(velocity)
 
     def render(self, canvas):
         canvas.create_circle(location.x, location.y, 7, fill='black')
