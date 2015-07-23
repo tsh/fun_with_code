@@ -1,5 +1,6 @@
 import tkinter
 import os
+import math
 
 from PIL import Image, ImageTk
 
@@ -30,11 +31,18 @@ class Square(object):
 
         self.velocity.add(self.acceleration)
         self.position.add(self.velocity)
-        self.angle += 10
+        self.angle = (math.degrees(math.atan2(self.velocity.y, self.velocity.x)))
+        print(self.angle)
 
     def render(self, canvas):
         self.tk_img = ImageTk.PhotoImage(self.img.rotate(self.angle))
         canvas.create_image(50, 50, image=self.tk_img)
+
+    def event_left_pressed(self, event):
+        self.velocity.y += 1
+
+    def event_right_pressed(self, event):
+        self.velocity.y -= 1
 
 
 class App(object):
@@ -58,10 +66,12 @@ class App(object):
         print("Key:", event.char, event.keycode)
 
     def _left_pressed(self, event):
-        print("Left:", event.keycode)
+       for o in self.objects:
+            o.event_left_pressed(event)
 
     def _right_pressed(self, event):
-        print("Right:", event.keycode)
+       for o in self.objects:
+            o.event_right_pressed(event)
 
     def add_object(self, obj):
         self.objects.append(obj)
