@@ -9,7 +9,7 @@ from vectors.vector import Vector
 class Square(object):
     def __init__(self, position=None, velocity=None):
         self.img = Image.open(os.path.join('..', 'assets', 'black_square.png'))
-        self.tk_img = ImageTk.PhotoImage(self.img)
+        self.tk_img = ImageTk.PhotoImage(self.img.rotate(0))
 
         self.position = Vector(60, 60) if position is None else position
         self.velocity = Vector(0, 0) if velocity is None else position
@@ -30,9 +30,11 @@ class Square(object):
 
         self.velocity.add(self.acceleration)
         self.position.add(self.velocity)
+        self.angle += 10
 
     def render(self, canvas):
-        canvas.create_image(20, 20, image=self.tk_img)
+        self.tk_img = ImageTk.PhotoImage(self.img.rotate(self.angle))
+        canvas.create_image(50, 50, image=self.tk_img)
 
 
 class App(object):
@@ -43,6 +45,23 @@ class App(object):
 
         self.window = tkinter.Tk()
         self.canvas = tkinter.Canvas(self.window,  height=200, width=200)
+
+        self.window.bind("<Key>", self._key_pressed)
+        self.window.bind("<Left>", self._left_pressed)
+        self.window.bind("<Right>", self._right_pressed)
+        self.canvas.bind("<Button-1>", self._mouse_1_callback)
+
+    def _mouse_1_callback(self, event):
+        print('click on:', event.x, event.y)
+
+    def _key_pressed(self, event):
+        print("Key:", event.char, event.keycode)
+
+    def _left_pressed(self, event):
+        print("Left:", event.keycode)
+
+    def _right_pressed(self, event):
+        print("Right:", event.keycode)
 
     def add_object(self, obj):
         self.objects.append(obj)
