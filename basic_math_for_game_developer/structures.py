@@ -6,6 +6,9 @@ class Vector(object):
         self.y = y
 
     def length(self):
+        """
+        a.k.a magnitude
+        """
         return math.sqrt(self.x*self.x + self.y*self.y)
 
     def mult(self, scalar):
@@ -13,6 +16,13 @@ class Vector(object):
 
     def div(self, scalar):
         return Vector(self.x/scalar, self.y/scalar)
+
+    def normalized(self):
+        """
+        normalized vector is of length 1.
+        Divide each component by vector length(magnitude)
+        """
+        return self.div(self.length())
 
 class Point(object):
     def __init__(self, x=None, y=None):
