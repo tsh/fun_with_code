@@ -8,6 +8,12 @@ class Vector(object):
     def length(self):
         return math.sqrt(self.x*self.x + self.y*self.y)
 
+    def mult(self, scalar):
+        return Vector(self.x*scalar, self.y*scalar)
+
+    def div(self, scalar):
+        return Vector(self.x/scalar, self.y/scalar)
+
 class Point(object):
     def __init__(self, x=None, y=None):
         self.x=x
