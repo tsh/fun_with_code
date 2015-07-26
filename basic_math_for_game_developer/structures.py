@@ -1,8 +1,12 @@
+import math
+
 class Vector(object):
     def __init__(self, x=None, y=None):
         self.x = x
         self.y = y
 
+    def length(self):
+        return math.sqrt(self.x*self.x + self.y*self.y)
 
 class Point(object):
     def __init__(self, x=None, y=None):
