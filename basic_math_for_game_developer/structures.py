@@ -30,6 +30,11 @@ class Vector(object):
         """
         return self.div(self.length())
 
+    def dot_product(self, vector):
+        normal_self = self.normalized()
+        normal_vector = vector.normalized()
+        return normal_self.x*normal_vector.x + normal_self.y*normal_vector.y
+
     def __str__(self):
         return "Vector<{x}, {y}>".format(x=self.x, y=self.y)
 
