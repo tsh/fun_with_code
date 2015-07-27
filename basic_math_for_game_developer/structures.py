@@ -31,6 +31,10 @@ class Vector(object):
         return self.div(self.length())
 
     def dot_product(self, vector):
+        """
+        For our purposes as view vector, dot product is calculated on a normal vectors.
+        Hence we will use explicit normalization
+        """
         normal_self = self.normalized()
         normal_vector = vector.normalized()
         return normal_self.x*normal_vector.x + normal_self.y*normal_vector.y

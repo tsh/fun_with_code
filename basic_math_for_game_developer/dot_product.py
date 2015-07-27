@@ -7,6 +7,7 @@ Dot product could be use to determine, is 2 object watch in a same or different 
 from structures import Vector, Point
 
 if __name__ == '__main__':
+    # Normally view vector is unit length vector, for fun of calculation let's use this one
     blu_player_view_vector = Vector(3, 0)
     red_player_view_vector = Vector(-6, 0)
     print("Dot product of the vectors is: ", blu_player_view_vector.dot_product(red_player_view_vector))
