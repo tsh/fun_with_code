@@ -32,6 +32,6 @@ class Vector(object):
     def normalize(self):
         magnitude = self.magnitude()
         if magnitude != 0:
-            self.div(magnitude)
+            self.div(math.ceil(magnitude))
 
 
